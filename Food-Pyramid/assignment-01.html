@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FOOD PYRAMID</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="assignment-01.css"/>
+        <script src="assignment-01.js"></script>
+    </head>
+    <body>
+        <div class="triangle" id="shelf_0"></div>
+        <div class="shelf controls" id="shelf_1">
+            <div>
+                <span onclick="decrease(1);" class="circle hide" adjust="decrease">-</span>
+                <span onmouseover="showTotal(1);" onmouseleave="showLabel(1);" class="circle" shelf="1" id="label_1"
+                data-tooltip="Foods and Drinks High in Fat, Sugar, and Salt.">1</span>
+                <span onclick="increase(1);" class="circle hide" adjust="increase">+</span>
+            </div>
+        </div>
+        <div class="shelf" id="sep_1"></div>
+        <div class="shelf controls" id="shelf_2">
+            <div>
+                <span onclick="decrease(2);" class="circle hide" adjust="decrease">-</span>
+                <span onmouseover="showTotal(2);" onmouseleave="showLabel(2);" class="circle" shelf="2" id="label_2"
+                data-tooltip="Reduced Fat Spread and Oils.">2</span>
+                <span onclick="increase(2);" class="circle hide" adjust="increase">+</span>
+            </div>
+        </div>
+        <div class="shelf" id="sep_2"></div>
+        <div class="shelf controls" id="shelf_3">
+            <div>
+                <span onclick="decrease(3);" class="circle hide" adjust="decrease">-</span>
+                <span onmouseover="showTotal(3);" onmouseleave="showLabel(3);" class="circle" shelf="3" id="label_3"
+                data-tooltip="Meat, Poultry, Fish, Eggs, Beans, and Nuts.">3</span>
+                <span onclick="increase(3);" class="circle hide" adjust="increase">+</span>
+            </div>
+        </div>
+        <div class="shelf controls" id="shelf_4">
+            <div>
+                <span onclick="decrease(4);" class="circle hide" adjust="decrease">-</span>
+                <span onmouseover="showTotal(4);" onmouseleave="showLabel(4);" class="circle" shelf="4" id="label_4"
+                data-tooltip="Milk, Yogurt, and Cheese.">4</span>
+                <span onclick="increase(4);" class="circle hide" adjust="increase">+</span>
+            </div>
+        </div>
+        <div class="shelf controls" id="shelf_5">
+            <div>
+                <span onclick="decrease(5);" class="circle hide" adjust="decrease">-</span>
+                <span onmouseover="showTotal(5);" onmouseleave="showLabel(5);" class="circle" shelf="5" id="label_5"
+                data-tooltip="Fruit and Vegetables.">5</span>
+                <span onclick="increase(5);" class="circle hide" adjust="increase">+</span>
+            </div>
+        </div>
+        <div class="shelf controls" id="shelf_6">
+            <div>
+                <span onclick="decrease(6);" class="circle hide" adjust="decrease">-</span>
+                <span onmouseover="showTotal(6);" onmouseleave="showLabel(6);" class="circle show" shelf="6" id="label_6" 
+                data-tooltip="Bread, Cereals, Potatoes, and Rice.">6</span>
+                <span onclick="increase(6);" class="circle hide" adjust="increase">+</span>
+            </div>
+        </div>
+        <div class="shelf" id="sep_3"></div>
+        <div class="shelf" id="shelf_7">
+            <div class="dropdown">
+                <button class="dropbtn">Select Age Group</button>
+                <div class="dropdown-content">
+                  <a href="#" onclick="ToggleGroup(1);">Children Ages 1-2</a>
+                  <a href="#" onclick="ToggleGroup(2);">Children Ages 3-4</a>
+                  <a href="#" onclick="ToggleGroup(3);">Adults & Children Ages 5+</a>
+                </div>
+              </div>
+            <input type="date" id="date" value="2022-02-17">
+            <button onclick="checkDate();" id="date_button">Submit</button>
+            <span id="output"></span>
+        </div>
+    </body>
+</html>

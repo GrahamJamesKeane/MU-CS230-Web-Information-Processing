@@ -1,0 +1,367 @@
+:root {
+    --default_height: 50px;
+
+    /*Width and height vars for shelves*/
+    --shelf_0_height: var(--default_height);
+    --shelf_0_width: 175px;
+    --shelf_1_height: var(--default_height);
+    --shelf_1_width: calc(var(--shelf_0_width));
+    --sep_1_height: 10px;
+    --sep_1_width: calc(var(--shelf_1_width) + 2*var(--shelf_1_height));
+    --shelf_2_height: var(--default_height);
+    --shelf_2_width: calc(var(--sep_1_width) + 2*var(--sep_1_height));
+    --sep_2_height: 10px;
+    --sep_2_width: calc(var(--shelf_2_width) + 2*var(--shelf_2_height));
+    --shelf_3_height: var(--default_height);
+    --shelf_3_width: calc(var(--sep_2_width) + 2*var(--sep_2_height));
+    --shelf_4_height: var(--default_height);
+    --shelf_4_width: calc(var(--shelf_3_width) + 2*var(--shelf_3_height));
+    --shelf_5_height: var(--default_height);
+    --shelf_5_width: calc(var(--shelf_4_width) + 2*var(--shelf_4_height));
+    --shelf_6_height: var(--default_height);
+    --shelf_6_width: calc(var(--shelf_5_width) + 2*var(--shelf_5_height));
+    --sep_3_height: 10px;
+    --sep_3_width: calc(var(--shelf_6_width) + 2*var(--shelf_6_height));
+    --shelf_7_height: var(--default_height);
+    --shelf_7_width: calc(var(--sep_3_width) + 2*var(--sep_3_height));
+
+    /*Item totals for shelves*/
+    --shelf_1_total: 0;
+    --shelf_2_total: 0;
+    --shelf_3_total: 0;
+    --shelf_4_total: 0;
+    --shelf_5_total: 0;
+    --shelf_6_total: 0;
+
+    /*Item min and max recommended amounts for shelf totals*/
+    --shelf_1_min: 0;
+    --shelf_2_min: 0;
+    --shelf_3_min: 2;
+    --shelf_4_min: 3;
+    --shelf_5_min: 5;
+    --shelf_6_min: 6;
+
+    --shelf_1_max: 0;
+    --shelf_2_max: 0;
+    --shelf_3_max: 2;
+    --shelf_4_max: 3;
+    --shelf_5_max: 5;
+    --shelf_6_max: 6;
+
+    /*Max items for shelf totals*/
+    --max_items: 9;
+
+    /*Background colours for shelves*/
+    --shelf_1_colour: rgb(255, 62, 62);
+    --shelf_2_colour: rgb(255, 135, 55);
+    --shelf_3_colour: rgb(250, 240, 99);
+    --shelf_4_colour: rgb(121, 145, 255);
+    --shelf_5_colour: rgb(146, 250, 136);
+    --shelf_6_colour: rgb(185, 106, 53);
+    --sep_colour: rgb(255, 255, 255);
+}
+
+/*Triangle shape for top of pyramid*/
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: calc(var(--shelf_0_width)/2) solid transparent;
+    border-right: calc(var(--shelf_0_width)/2) solid transparent;
+    border-bottom: calc(var(--shelf_0_width)/2) solid var(--shelf_1_colour);
+    margin: auto auto;
+}
+
+/*Universal shelf properties*/
+.shelf {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: auto auto;
+}
+
+/*Shelf-specific properties: width, height, colour*/
+div[id="shelf_1"].shelf {
+    background-color: var(--shelf_1_colour);
+    width: var(--shelf_1_width);
+    height: var(--shelf_1_height);
+}
+
+div[id="shelf_2"].shelf {
+    background-color: var(--shelf_2_colour);
+    width: var(--shelf_2_width);
+    height: var(--shelf_2_height);
+}
+
+div[id="shelf_3"].shelf {
+    background-color: var(--shelf_3_colour);
+    width: var(--shelf_3_width);
+    height: var(--shelf_3_height);
+}
+
+div[id="shelf_4"].shelf {
+    background-color: var(--shelf_4_colour);
+    width: var(--shelf_4_width);
+    height: var(--shelf_4_height);
+}
+
+div[id="shelf_5"].shelf {
+    background-color: var(--shelf_5_colour);
+    width: var(--shelf_5_width);
+    height: var(--shelf_5_height);
+}
+
+div[id="shelf_6"].shelf {
+    background-color: var(--shelf_6_colour);
+    width: var(--shelf_6_width);
+    height: var(--shelf_6_height);
+}
+
+div[id="shelf_7"].shelf {
+    background-color: var(--sep_colour);
+    width: var(--shelf_7_width);
+    height: var(--shelf_7_height);
+    border: 3px solid rgb(0, 0, 0);
+}
+
+div[id="sep_1"] {
+    width: var(--sep_1_width);
+    height: var(--sep_1_height);
+    background-color: var(--sep_colour);
+}
+
+div[id="sep_2"] {
+    width: var(--sep_2_width);
+    height: var(--sep_2_height);
+    background-color: var(--sep_colour);
+}
+
+div[id="sep_3"] {
+    width: var(--sep_3_width);
+    height: var(--sep_3_height);
+    background-color: var(--sep_colour);
+}
+
+.shelf::before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    right: 100%;
+    top: 0px;
+}
+
+div[id="shelf_1"].shelf::before {
+    border-bottom: var(--shelf_1_height) solid var(--shelf_1_colour);
+    border-left: var(--shelf_1_height) solid transparent;
+}
+
+div[id="shelf_2"].shelf::before {
+    border-bottom: var(--shelf_2_height) solid var(--shelf_2_colour);
+    border-left: var(--shelf_2_height) solid transparent;
+}
+
+div[id="shelf_3"].shelf::before {
+    border-bottom: var(--shelf_3_height) solid var(--shelf_3_colour);
+    border-left: var(--shelf_3_height) solid transparent;
+}
+
+div[id="shelf_4"].shelf::before {
+    border-bottom: var(--shelf_4_height) solid var(--shelf_4_colour);
+    border-left: var(--shelf_4_height) solid transparent;
+}
+
+div[id="shelf_5"].shelf::before {
+    border-bottom: var(--shelf_5_height) solid var(--shelf_5_colour);
+    border-left: var(--shelf_5_height) solid transparent;
+}
+
+div[id="shelf_6"].shelf::before {
+    border-bottom: var(--shelf_6_height) solid var(--shelf_6_colour);
+    border-left: var(--shelf_6_height) solid transparent;
+}
+
+div[id="sep_1"].shelf::before {
+    border-bottom: var(--sep_1_height) solid var(--sep_colour);
+    border-left: var(--sep_1_height) solid transparent;
+}
+
+div[id="sep_2"].shelf::before {
+    border-bottom: var(--sep_2_height) solid var(--sep_colour);
+    border-left: var(--sep_2_height) solid transparent;
+}
+
+.shelf::after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    left: 100%;
+    top: 0px;
+}
+
+div[id="shelf_1"].shelf::after {
+    border-bottom: var(--shelf_1_height) solid var(--shelf_1_colour);
+    border-right: var(--shelf_1_height) solid transparent;
+}
+
+div[id="shelf_2"].shelf::after {
+    border-bottom: var(--shelf_2_height) solid var(--shelf_2_colour);
+    border-right: var(--shelf_2_height) solid transparent;
+}
+
+div[id="shelf_3"].shelf::after {
+    border-bottom: var(--shelf_3_height) solid var(--shelf_3_colour);
+    border-right: var(--shelf_3_height) solid transparent;
+}
+
+div[id="shelf_4"].shelf::after {
+    border-bottom: var(--shelf_4_height) solid var(--shelf_4_colour);
+    border-right: var(--shelf_4_height) solid transparent;
+}
+
+div[id="shelf_5"].shelf::after {
+    border-bottom: var(--shelf_5_height) solid var(--shelf_5_colour);
+    border-right: var(--shelf_5_height) solid transparent;
+}
+
+div[id="shelf_6"].shelf::after {
+    border-bottom: var(--shelf_6_height) solid var(--shelf_6_colour);
+    border-right: var(--shelf_6_height) solid transparent;
+}
+
+div[id="sep_1"].shelf::after {
+    border-bottom: var(--sep_1_height) solid var(--sep_colour);
+    border-right: var(--sep_1_height) solid transparent;
+}
+
+div[id="sep_2"].shelf::after {
+    border-bottom: var(--sep_2_height) solid var(--sep_colour);
+    border-right: var(--sep_2_height) solid transparent;
+}
+
+.circle {
+    display: inline-block;
+    border-radius: 50%;
+    border: 2px solid rgb(255, 255, 255);
+    width: 35px;
+    height: 35px;
+    background-color: rgb(0, 0, 0);
+    user-select: none;
+    text-align: center;
+    font: bold 30px/35px Helvetica, Verdana, Tahoma;
+    color: white;
+}
+
+.circle:hover {
+    content: attr(total);
+    background-color: white;
+    border: 3px solid rgb(0, 0, 0);
+    color: black;
+    transition: 500ms;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.controls:hover .hide {
+    visibility: visible;
+    transition: 500ms;
+}
+
+span[data-tooltip] {
+    position: relative;
+    cursor: help;
+}
+
+span[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 100px;
+    bottom: 10px;
+    min-width: 200px;
+    border: 3px rgb(0, 0, 0) solid;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    color: black;
+    font: bold 15px/15px Helvetica, Verdana, Tahoma;
+    z-index: 1;
+}
+
+input[type="date"] {
+    padding: 5px;
+    border-radius: 20px;
+    color: black;
+    font: bold 15px/15px Helvetica, Verdana, Tahoma;
+}
+
+button[id="date_button"] {
+    position: relative;
+    border-radius: 20px;
+    padding: 5px;
+    left: 2%;
+    color: black;
+    font: bold 15px/15px Helvetica, Verdana, Tahoma;
+}
+
+span[id="output"] {
+    position: relative;
+    border-radius: 20px;
+    padding: 5px;
+    left: 2%;
+    color: black;
+    font: bold 15px/15px Helvetica, Verdana, Tahoma;
+}
+
+.dropbtn {
+    background-color: #04AA6D;
+    border-radius: 20px;
+    color: white;
+    padding: 10px;
+    position: relative;
+    font-size: 12px;
+    border: none;
+    right: 100%;
+    color: black;
+    font: bold 15px/15px Helvetica, Verdana, Tahoma;
+    border: 3px rgb(0, 0, 0) solid;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 100%;
+    color: black;
+    font: bold 14px/15px Helvetica, Verdana, Tahoma;
+    border: 3px rgb(0, 0, 0) solid;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 10px;
+    text-decoration: bold;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: rgb(250, 232, 232);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #7ef582;
+}
